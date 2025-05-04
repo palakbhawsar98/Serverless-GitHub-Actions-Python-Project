@@ -1,0 +1,22 @@
+service: Serverless-Python-Project
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+  stage: dev
+
+functions:
+  getHandler:
+    handler: handler.get
+    events:
+    - httpApi:
+        path: /get
+        method: get
+
+  postHandler:
+    handler: handler.post
+    events:
+    - httpApi:
+        path: /post
+        method: post

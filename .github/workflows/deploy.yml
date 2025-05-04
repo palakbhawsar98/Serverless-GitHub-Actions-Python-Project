@@ -3,7 +3,7 @@ name: Deploy Serverless Python API to AWS
 on:
   push:
     branches:
-    - main
+    - test
 
 jobs:
   deploy:

@@ -1,27 +1,26 @@
-name: Serverless Removal
+name: Serverless Remove
 
 on:
-  push:
-    branches:
-      - main  # Change to your branch if necessary
+  workflow_dispatch:
 
 jobs:
   remove:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Use Node.js version 18 or higher
+          node-version: '18'
 
-      - name: Install Serverless Framework
+      - name: Install Serverless
         run: npm install -g serverless
 
-      - name: Remove Serverless Stack
+      - name: Remove Serverless Service
         run: serverless remove
         env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

@@ -3,7 +3,7 @@ import json
 def get(event, context):
     response = {
         "statusCode": 200,
-        "body": json.dumps({"message": "Hello, This is a GET request"}),
+        "body": json.dumps({"message": "Hello, This is a GET request, from Palak"}),
     }
     return response
 

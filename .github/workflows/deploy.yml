@@ -1,25 +1,27 @@
-name: Deploy Serverless Python API to AWS
+name: Serverless Removal
 
 on:
   push:
     branches:
-    - main
+      - main  # Change to your branch if necessary
 
 jobs:
   remove:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Setup Node.js
+
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-      - name: Install Serverless CLI
+          node-version: '18'  # Use Node.js version 18 or higher
+
+      - name: Install Serverless Framework
         run: npm install -g serverless
+
       - name: Remove Serverless Stack
         run: serverless remove
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}  
